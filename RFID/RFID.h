@@ -20,7 +20,7 @@
 #define SS			2
 
 
-#define     MAX_LEN               16        // Maximum length of an array.
+#define     MAX_LEN               8        // Maximum length of an array.
 
 // MF522 MFRC522 error codes.
 #define     MI_OK                 0         // Everything A-OK.

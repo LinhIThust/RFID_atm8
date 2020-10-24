@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <avr/eeprom.h>
-#define MAX_EEPROM 20
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#define MAX_EEPROM 21
 #include "RFID.h"
 
 void uart_init(){
@@ -21,6 +23,8 @@ void USART_Transmit( unsigned char data ){
 	/* Put data into buffer, sends the data */
 	UDR = data;
 }
+//UDR=Temp;
+
 unsigned char USART_Receive( void ){
 	/* Wait for data to be received */
 	while ( !(UCSRA & (1<<RXC)) );
@@ -48,16 +52,15 @@ void _SendString(char str[])
 void send_to_pc(){
 	char temp[2];
 	uint8_t c;
-	for(int j = 0;j<MAX_EEPROM;j++){
+	for(int j = 1;j<MAX_EEPROM;j++){
 		c=eeprom_read_byte((const uint8_t*)j);
 		sprintf(temp,"%02X", c);
 		USART_Transmit(temp[0]);
 		USART_Transmit(temp[1]);
-		if(j % 5==4) USART_Transmit('\n');
+		if(j % 5==0) USART_Transmit('\n');
 	}
 	USART_Transmit('\n');
 }
-
 MFRC522 rfid(2,6);
 int main(void)
 {
@@ -69,16 +72,23 @@ int main(void)
 	_SendString("START");
 	uint8_t status;
 	uint8_t data[MAX_LEN];
-	uint8_t indexEEPROM =0;
+	uint8_t indexEEPROM =1;
 	bool check =true;
 	char temp[2];
+	if(eeprom_read_byte(0)=='Y'){
+		eeprom_write_byte(0,'N');
+		while ( !(UCSRA & (1<<RXC)) );
+		send_to_pc();
+		_delay_ms(100);
+		
+	}
 	while(1)
 	{
-		
 		memset( data, '\0', sizeof(char)*MAX_LEN );
 		status = rfid.requestTag(MF1_REQIDL, data);
 		
 		if (status == MI_OK && indexEEPROM <MAX_EEPROM) {
+			eeprom_write_byte(0,'Y');
 			status = rfid.antiCollision(data);
 			int i=0;
 			while(data[i] != '\0')
@@ -100,8 +110,8 @@ int main(void)
 			cbi(PORTD,7);
 		}
 		if(indexEEPROM ==MAX_EEPROM && check){
-			send_to_pc();
-			check =false;
+			eeprom_write_byte(0,'Y');
+			check=false;
 		}
 	}
 }
