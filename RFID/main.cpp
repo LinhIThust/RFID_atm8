@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <avr/eeprom.h>
-
+#define MAX_EEPROM 20
 #include "RFID.h"
+
 void uart_init(){
 	UBRRH = 0x00;
 	UBRRL = 0xC;//set baurate 2400
@@ -43,76 +44,64 @@ void _SendString(char str[])
 		i++;
 	}
 }
-void string2hexString(uint8_t* input, uint8_t* output){
-	int loop;
-	int i;
-	
-	i=0;
-	loop=0;
-	
-	while(input[loop] != '\0')
-	{
-		sprintf((char*)(output+i),"%02X", input[loop]);
-		loop+=1;
-		i+=2;
+
+void send_to_pc(){
+	char temp[2];
+	uint8_t c;
+	for(int j = 0;j<MAX_EEPROM;j++){
+		c=eeprom_read_byte((const uint8_t*)j);
+		sprintf(temp,"%02X", c);
+		USART_Transmit(temp[0]);
+		USART_Transmit(temp[1]);
+		if(j % 5==4) USART_Transmit('\n');
 	}
-	//insert NULL at the end of the output string
-	output[i++] = '\n';
-}
-void eeprom_init(){
-	for(unsigned char i=0;i<100;i++){
-		eeprom_write_byte((uint8_t*)i,0);
-	}
+	USART_Transmit('\n');
 }
 
 MFRC522 rfid(2,6);
-unsigned char indexEEPROM =0;
-
 int main(void)
 {
 	
 	SPI_MasterInit();
 	uart_init();
-	eeprom_init();
 	DDRD = 0x80;
 	rfid.begin();
 	_SendString("START");
 	uint8_t status;
 	uint8_t data[MAX_LEN];
-	uint8_t dataHex[MAX_LEN];
+	uint8_t indexEEPROM =0;
+	bool check =true;
+	char temp[2];
 	while(1)
 	{
 		
 		memset( data, '\0', sizeof(char)*MAX_LEN );
 		status = rfid.requestTag(MF1_REQIDL, data);
-		if (status == MI_OK) {
+		
+		if (status == MI_OK && indexEEPROM <MAX_EEPROM) {
 			status = rfid.antiCollision(data);
 			int i=0;
-			string2hexString(data,dataHex);
 			while(data[i] != '\0')
 			{
-				USART_Transmit(dataHex[2*i]);
-				USART_Transmit(dataHex[2*i+1]);
+				sprintf(temp,"%02X", data[i]);
+				USART_Transmit(temp[0]);
+				USART_Transmit(temp[1]);
+				if(indexEEPROM >MAX_EEPROM) break;
 				eeprom_write_byte((uint8_t*)indexEEPROM,data[i]);
 				indexEEPROM++;
 				i++;
 				
 			}
 			USART_Transmit('\n');
-			if(indexEEPROM==20){
-			//	USART_Transmit(eeprom_read_byte((const uint8_t*)5));
-				for(int j = 0;j<20;j++){
-					uint8_t c= eeprom_read_byte((const uint8_t*)j);
-					USART_Transmit(c);
-				}
-					
-			}
-			
 			sbi(PORTD,7);
 			rfid.selectTag(data);
 			// Stop the tag and get ready for reading a new tag.
 			rfid.haltTag();
 			cbi(PORTD,7);
+		}
+		if(indexEEPROM ==MAX_EEPROM && check){
+			send_to_pc();
+			check =false;
 		}
 	}
 }
