@@ -22,6 +22,10 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o) (fputc)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o) (__ultoa_invert)
+C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+                              main.o (eeprom_read_byte)
+C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
+                              main.o (eeprom_write_byte)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o) (__prologue_saves__)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_epilogue.o)
@@ -138,6 +142,12 @@ Discarded input sections
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
+ .text          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .text          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
+ .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
+ .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
@@ -295,7 +305,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xe5e
+.text           0x00000000      0xee8
  *(.vectors)
  .vectors       0x00000000       0x26 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4/crtatmega8a.o
                 0x00000000                __vector_default
@@ -393,84 +403,94 @@ END GROUP
  .text._Z16string2hexStringPhS_
                 0x000000b8       0x7c main.o
                 0x000000b8                _Z16string2hexStringPhS_
- .text.main     0x00000134       0xac main.o
-                0x00000134                main
+ .text._Z11eeprom_initv
+                0x00000134       0x1c main.o
+                0x00000134                _Z11eeprom_initv
+ .text.main     0x00000150       0xf0 main.o
+                0x00000150                main
  .text._GLOBAL__sub_I__Z9uart_initv
-                0x000001e0       0x10 main.o
+                0x00000240       0x10 main.o
  .text._Z18SPI_MasterTransmith
-                0x000001f0        0xa RFID.o
-                0x000001f0                _Z18SPI_MasterTransmith
+                0x00000250        0xa RFID.o
+                0x00000250                _Z18SPI_MasterTransmith
  .text._ZN7MFRC522C2Eii
-                0x000001fa       0x5a RFID.o
-                0x000001fa                _ZN7MFRC522C1Eii
-                0x000001fa                _ZN7MFRC522C2Eii
+                0x0000025a       0x5a RFID.o
+                0x0000025a                _ZN7MFRC522C1Eii
+                0x0000025a                _ZN7MFRC522C2Eii
  .text._ZN7MFRC52215writeToRegisterEhh
-                0x00000254       0x58 RFID.o
-                0x00000254                _ZN7MFRC52215writeToRegisterEhh
+                0x000002b4       0x58 RFID.o
+                0x000002b4                _ZN7MFRC52215writeToRegisterEhh
  .text._ZN7MFRC52216readFromRegisterEh
-                0x000002ac       0x54 RFID.o
-                0x000002ac                _ZN7MFRC52216readFromRegisterEh
+                0x0000030c       0x54 RFID.o
+                0x0000030c                _ZN7MFRC52216readFromRegisterEh
  .text._ZN7MFRC5225resetEv
-                0x00000300        0x8 RFID.o
-                0x00000300                _ZN7MFRC5225resetEv
+                0x00000360        0x8 RFID.o
+                0x00000360                _ZN7MFRC5225resetEv
  .text._ZN7MFRC52210setBitMaskEhh
-                0x00000308       0x24 RFID.o
-                0x00000308                _ZN7MFRC52210setBitMaskEhh
+                0x00000368       0x24 RFID.o
+                0x00000368                _ZN7MFRC52210setBitMaskEhh
  .text._ZN7MFRC52212clearBitMaskEhh
-                0x0000032c       0x26 RFID.o
-                0x0000032c                _ZN7MFRC52212clearBitMaskEhh
+                0x0000038c       0x26 RFID.o
+                0x0000038c                _ZN7MFRC52212clearBitMaskEhh
  .text._ZN7MFRC5225beginEv
-                0x00000352       0x5e RFID.o
-                0x00000352                _ZN7MFRC5225beginEv
+                0x000003b2       0x5e RFID.o
+                0x000003b2                _ZN7MFRC5225beginEv
  .text._ZN7MFRC52210commandTagEhPhiS0_Pi
-                0x000003b0      0x21e RFID.o
-                0x000003b0                _ZN7MFRC52210commandTagEhPhiS0_Pi
+                0x00000410      0x21e RFID.o
+                0x00000410                _ZN7MFRC52210commandTagEhPhiS0_Pi
  .text._ZN7MFRC52210requestTagEhPh
-                0x000005ce       0x70 RFID.o
-                0x000005ce                _ZN7MFRC52210requestTagEhPh
+                0x0000062e       0x70 RFID.o
+                0x0000062e                _ZN7MFRC52210requestTagEhPh
  .text._ZN7MFRC52213antiCollisionEPh
-                0x0000063e       0xb6 RFID.o
-                0x0000063e                _ZN7MFRC52213antiCollisionEPh
+                0x0000069e       0xb6 RFID.o
+                0x0000069e                _ZN7MFRC52213antiCollisionEPh
  .text._ZN7MFRC52212calculateCRCEPhiS0_
-                0x000006f4       0x90 RFID.o
-                0x000006f4                _ZN7MFRC52212calculateCRCEPhiS0_
+                0x00000754       0x90 RFID.o
+                0x00000754                _ZN7MFRC52212calculateCRCEPhiS0_
  .text._ZN7MFRC5229selectTagEPh
-                0x00000784       0xa2 RFID.o
-                0x00000784                _ZN7MFRC5229selectTagEPh
+                0x000007e4       0xa2 RFID.o
+                0x000007e4                _ZN7MFRC5229selectTagEPh
  .text._ZN7MFRC5227haltTagEv
-                0x00000826       0x78 RFID.o
-                0x00000826                _ZN7MFRC5227haltTagEv
- .text.libgcc   0x0000089e        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_tablejump2.o)
-                0x0000089e                __tablejump2__
+                0x00000886       0x78 RFID.o
+                0x00000886                _ZN7MFRC5227haltTagEv
+ .text.libgcc   0x000008fe        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_tablejump2.o)
+                0x000008fe                __tablejump2__
  .text.avr-libc
-                0x000008aa       0x3e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o)
-                0x000008aa                sprintf
+                0x0000090a       0x3e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(sprintf.o)
+                0x0000090a                sprintf
  .text.avr-libc
-                0x000008e8      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o)
-                0x000008e8                vfprintf
+                0x00000948      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(vfprintf_std.o)
+                0x00000948                vfprintf
  .text.avr-libc
-                0x00000c8c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen_P.o)
-                0x00000c8c                strnlen_P
+                0x00000cec       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen_P.o)
+                0x00000cec                strnlen_P
  .text.avr-libc
-                0x00000ca2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen.o)
-                0x00000ca2                strnlen
+                0x00000d02       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(strnlen.o)
+                0x00000d02                strnlen
  .text.avr-libc
-                0x00000cb8       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(fputc.o)
-                0x00000cb8                fputc
+                0x00000d18       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(fputc.o)
+                0x00000d18                fputc
  .text.avr-libc
-                0x00000d30       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
-                0x00000d30                __ultoa_invert
+                0x00000d90       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libc.a(ultoa_invert.o)
+                0x00000d90                __ultoa_invert
+ .text.avr-libc
+                0x00000e4c       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+                0x00000e4c                eeprom_read_byte
+ .text.avr-libc
+                0x00000e5c       0x1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
+                0x00000e5c                eeprom_write_byte
+                0x00000e5e                eeprom_write_r18
  .text.libgcc.prologue
-                0x00000dec       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
-                0x00000dec                __prologue_saves__
+                0x00000e76       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_prologue.o)
+                0x00000e76                __prologue_saves__
  .text.libgcc.prologue
-                0x00000e24       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_epilogue.o)
-                0x00000e24                __epilogue_restores__
-                0x00000e5a                . = ALIGN (0x2)
+                0x00000eae       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_epilogue.o)
+                0x00000eae                __epilogue_restores__
+                0x00000ee4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000e5a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
-                0x00000e5a                _exit
-                0x00000e5a                exit
+ .fini9         0x00000ee4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                0x00000ee4                _exit
+                0x00000ee4                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -489,11 +509,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000e5a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000ee4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000e5e                _etext = .
+                0x00000ee8                _etext = .
 
-.data           0x00800060        0xc load address 0x00000e5e
+.data           0x00800060        0xc load address 0x00000ee8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -508,22 +528,25 @@ END GROUP
                 0x0080006c                _edata = .
                 0x0080006c                PROVIDE (__data_end, .)
 
-.bss            0x0080006c        0x4
+.bss            0x0080006c        0x5
                 0x0080006c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.rfid      0x0080006c        0x4 main.o
-                0x0080006c                rfid
+ .bss.indexEEPROM
+                0x0080006c        0x1 main.o
+                0x0080006c                indexEEPROM
+ .bss.rfid      0x0080006d        0x4 main.o
+                0x0080006d                rfid
  *(COMMON)
-                0x00800070                PROVIDE (__bss_end, .)
-                0x00000e5e                __data_load_start = LOADADDR (.data)
-                0x00000e6a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800071                PROVIDE (__bss_end, .)
+                0x00000ee8                __data_load_start = LOADADDR (.data)
+                0x00000ef4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800070        0x0
+.noinit         0x00800071        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800070                _end = .
+                0x00800071                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -593,51 +616,61 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xe8
+.debug_aranges  0x00000000      0x130
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x58 main.o
+                0x00000000       0x60 main.o
  .debug_aranges
-                0x00000058       0x90 RFID.o
+                0x00000060       0x90 RFID.o
+ .debug_aranges
+                0x000000f0       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .debug_aranges
+                0x00000110       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1ae4
+.debug_info     0x00000000     0x1d17
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x48c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_info    0x0000048c      0x5e1 main.o
- .debug_info    0x00000a6d     0x1077 RFID.o
+ .debug_info    0x0000048c      0x6e4 main.o
+ .debug_info    0x00000b70     0x1077 RFID.o
+ .debug_info    0x00001be7       0x98 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .debug_info    0x00001c7f       0x98 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
 
-.debug_abbrev   0x00000000      0x934
+.debug_abbrev   0x00000000      0x980
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x44e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_abbrev  0x0000044e      0x255 main.o
- .debug_abbrev  0x000006a3      0x291 RFID.o
+ .debug_abbrev  0x0000044e      0x279 main.o
+ .debug_abbrev  0x000006c7      0x291 RFID.o
+ .debug_abbrev  0x00000958       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .debug_abbrev  0x0000096c       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
 
-.debug_line     0x00000000      0x8c0
+.debug_line     0x00000000      0xaba
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x109 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_line    0x00000109      0x21e main.o
- .debug_line    0x00000327      0x599 RFID.o
+ .debug_line    0x00000109      0x306 main.o
+ .debug_line    0x0000040f      0x599 RFID.o
+ .debug_line    0x000009a8       0x7a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eerd_byte.o)
+ .debug_line    0x00000a22       0x98 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4\libatmega8a.a(eewr_byte.o)
 
-.debug_frame    0x00000000      0x3a8
+.debug_frame    0x00000000      0x3c4
  *(.debug_frame)
- .debug_frame   0x00000000       0xf0 main.o
- .debug_frame   0x000000f0      0x2b8 RFID.o
+ .debug_frame   0x00000000      0x10c main.o
+ .debug_frame   0x0000010c      0x2b8 RFID.o
 
-.debug_str      0x00000000      0x75b
+.debug_str      0x00000000      0x7a7
  *(.debug_str)
  .debug_str     0x00000000      0x17a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_str     0x0000017a      0x4e5 main.o
-                                0x532 (size before relaxing)
- .debug_str     0x0000065f       0xfc RFID.o
+ .debug_str     0x0000017a      0x531 main.o
+                                0x57e (size before relaxing)
+ .debug_str     0x000006ab       0xfc RFID.o
                                 0x4c7 (size before relaxing)
 
-.debug_loc      0x00000000     0x13d2
+.debug_loc      0x00000000     0x147c
  *(.debug_loc)
- .debug_loc     0x00000000      0x35e main.o
- .debug_loc     0x0000035e     0x1074 RFID.o
+ .debug_loc     0x00000000      0x408 main.o
+ .debug_loc     0x00000408     0x1074 RFID.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -657,10 +690,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xe0
+.debug_ranges   0x00000000      0x108
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x48 main.o
- .debug_ranges  0x00000048       0x98 RFID.o
+ .debug_ranges  0x00000000       0x70 main.o
+ .debug_ranges  0x00000070       0x98 RFID.o
 
 .debug_macro
  *(.debug_macro)

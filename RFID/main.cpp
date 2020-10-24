@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
-
+#include <avr/eeprom.h>
 
 #include "RFID.h"
 void uart_init(){
@@ -59,13 +59,21 @@ void string2hexString(uint8_t* input, uint8_t* output){
 	//insert NULL at the end of the output string
 	output[i++] = '\n';
 }
+void eeprom_init(){
+	for(unsigned char i=0;i<100;i++){
+		eeprom_write_byte((uint8_t*)i,0);
+	}
+}
 
 MFRC522 rfid(2,6);
+unsigned char indexEEPROM =0;
 
 int main(void)
 {
+	
 	SPI_MasterInit();
 	uart_init();
+	eeprom_init();
 	DDRD = 0x80;
 	rfid.begin();
 	_SendString("START");
@@ -77,8 +85,6 @@ int main(void)
 		
 		memset( data, '\0', sizeof(char)*MAX_LEN );
 		status = rfid.requestTag(MF1_REQIDL, data);
-	//	string2hexString(data,dataHex);
-		//sendz(status);
 		if (status == MI_OK) {
 			status = rfid.antiCollision(data);
 			int i=0;
@@ -87,9 +93,21 @@ int main(void)
 			{
 				USART_Transmit(dataHex[2*i]);
 				USART_Transmit(dataHex[2*i+1]);
+				eeprom_write_byte((uint8_t*)indexEEPROM,data[i]);
+				indexEEPROM++;
 				i++;
 				
 			}
+			USART_Transmit('\n');
+			if(indexEEPROM==20){
+			//	USART_Transmit(eeprom_read_byte((const uint8_t*)5));
+				for(int j = 0;j<20;j++){
+					uint8_t c= eeprom_read_byte((const uint8_t*)j);
+					USART_Transmit(c);
+				}
+					
+			}
+			
 			sbi(PORTD,7);
 			rfid.selectTag(data);
 			// Stop the tag and get ready for reading a new tag.
