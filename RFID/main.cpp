@@ -4,7 +4,7 @@
 #include <avr/eeprom.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#define MAX_EEPROM 21
+#define MAX_EEPROM 251
 #include "RFID.h"
 
 void uart_init(){
@@ -74,10 +74,11 @@ int main(void)
 	uint8_t data[MAX_LEN];
 	uint8_t indexEEPROM =1;
 	bool check =true;
+	bool check_write =false;
 	char temp[2];
 	if(eeprom_read_byte(0)=='Y'){
+		while ( !(UCSRA & (1<<RXC)));
 		eeprom_write_byte(0,'N');
-		while ( !(UCSRA & (1<<RXC)) );
 		send_to_pc();
 		_delay_ms(100);
 		
@@ -88,21 +89,25 @@ int main(void)
 		status = rfid.requestTag(MF1_REQIDL, data);
 		
 		if (status == MI_OK && indexEEPROM <MAX_EEPROM) {
-			eeprom_write_byte(0,'Y');
+			if(!check_write){
+				check_write =true;
+				eeprom_write_byte(0,'Y');
+			}
+				
 			status = rfid.antiCollision(data);
 			int i=0;
 			while(data[i] != '\0')
 			{
-				sprintf(temp,"%02X", data[i]);
-				USART_Transmit(temp[0]);
-				USART_Transmit(temp[1]);
+				//sprintf(temp,"%02X", data[i]);
+				//USART_Transmit(temp[0]);
+				//USART_Transmit(temp[1]);
 				if(indexEEPROM >MAX_EEPROM) break;
 				eeprom_write_byte((uint8_t*)indexEEPROM,data[i]);
 				indexEEPROM++;
 				i++;
 				
 			}
-			USART_Transmit('\n');
+			//USART_Transmit('\n');
 			sbi(PORTD,7);
 			rfid.selectTag(data);
 			// Stop the tag and get ready for reading a new tag.
